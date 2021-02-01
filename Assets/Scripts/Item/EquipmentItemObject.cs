@@ -7,7 +7,6 @@ public class EquipmentItemObject : ItemObject
 {
     void Awake() 
     {
-        base.itemType = ItemType.Equipment;
-        base.itemID = System.Guid.NewGuid().ToString();
+        base.Init(ItemType.Equipment);
     }
 }

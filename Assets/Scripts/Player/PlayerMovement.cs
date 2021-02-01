@@ -16,11 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 diractionAccess = Vector2.zero;
 
-    void Awake()
-    { 
-        
-    }
-
     void Update()
     {
         input.x = GetAxisRawBasedOnAccess("Horizontal");

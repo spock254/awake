@@ -7,7 +7,6 @@ public class OnPlayerUseItemObject : ItemObject
 {
     void Awake() 
     {
-        base.itemType = ItemType.OnPlayerUse;
-        base.itemID = System.Guid.NewGuid().ToString();
+        base.Init(ItemType.OnPlayerUse);
     }
 }
