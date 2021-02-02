@@ -1307,6 +1307,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnItemAdd:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 797668952}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBagOpen:
+    m_PersistentCalls:
       m_Calls: []
 --- !u!1 &182063745
 GameObject:
@@ -1976,7 +1991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotContainer: {fileID: 132824681}
   itemContainer: {fileID: 1228136902}
-  bag: {fileID: 11400000, guid: 0526438e459b7d54f8a1b97b4423a2d0, type: 2}
   slotPref: {fileID: 1199063427277276185, guid: 1a17aa64259bded4c8c67b2efbca207a,
     type: 3}
   imgItemPref: {fileID: 8608557499213191970, guid: d909ef45e5d4ec44f88665f3c2b8cf2d,
@@ -3245,6 +3259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8daf0a326d8174743973fc498cd08a11, type: 2}
+  bag: {fileID: 11400000, guid: 0526438e459b7d54f8a1b97b4423a2d0, type: 2}
 --- !u!4 &1651267134
 Transform:
   m_ObjectHideFlags: 0

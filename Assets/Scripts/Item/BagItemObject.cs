@@ -7,7 +7,7 @@ public class BagItemObject : ItemObject
 {
     [SerializeField]    List<ItemObject> innerItems;
     [SerializeField]    Vector2Int bagSize;
-                        
+                                        
     void Awake() 
     {
         base.Init(ItemType.Bag);
@@ -15,8 +15,15 @@ public class BagItemObject : ItemObject
 
     public bool TryAddItem(ItemObject item)
     {
-        // TODO
-        innerItems.Add(item);
+        if (InventoryScanner.GetInstance().HasFreeSpace(item) == true)
+        {
+            innerItems.Add(item);
+        }
+        else
+        {
+            Debug.Log("no place in bag");
+            return false;
+        }
 
         return true;
     }
