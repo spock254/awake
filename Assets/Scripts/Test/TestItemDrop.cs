@@ -6,7 +6,12 @@ using UnityEngine.UI;
 public class TestItemDrop : MonoBehaviour
 {
     public ItemObject item;
-    public GameObject slot;
+    EventDataBase eventDataBase;
+
+    void Start() 
+    {
+        eventDataBase = Global.Component.GetEventDataBase();
+    }
 
     void Update()
     {
@@ -24,14 +29,12 @@ public class TestItemDrop : MonoBehaviour
             foreach (var hit in hits)
             {
                 //Debug.Log(hit.collider.name);
-                if (hit.collider.name.Contains("Item")) 
+                if (hit.collider.name.Contains(Global.DROPED_ITEM_NAME)) 
                 {
                     CommonItemObject common = (CommonItemObject)hit.collider.gameObject.GetComponent<ItemCell>().item;
-                    var rt = slot.GetComponent<RectTransform>();
-                    rt.sizeDelta = new Vector2(40, 80);
-                    rt.localPosition = new Vector3(rt.localPosition.x, rt.localPosition.y - 20, rt.localPosition.z);
-                    slot.GetComponent<Image>().sprite = common.inventoryData.inventorySprite;
-                    //Debug.Log(common.testData);
+                    //bag.TryAddItem(common);
+
+                    eventDataBase.OnItemAdd.Invoke(common);
                 }
             }
         }

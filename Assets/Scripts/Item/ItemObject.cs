@@ -20,6 +20,8 @@ public abstract class ItemObject : ScriptableObject
     {
         this.itemType = itemType;
         this.ID = System.Guid.NewGuid().ToString();
+
+        inventoryData.Init();
     }
 
     bool IsSameItem(ItemObject otherItem)
