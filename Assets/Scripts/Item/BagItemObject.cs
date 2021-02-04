@@ -13,17 +13,9 @@ public class BagItemObject : ItemObject
         base.Init(ItemType.Bag);
     }
 
-    public bool TryAddItem(ItemObject item)
+    public bool AddItem(ItemObject item)
     {
-        if (InventoryScanner.GetInstance().HasFreeSpace(item) == true)
-        {
-            innerItems.Add(item);
-        }
-        else
-        {
-            Debug.Log("no place in bag");
-            return false;
-        }
+        innerItems.Add(item);
 
         return true;
     }
@@ -35,10 +27,16 @@ public class BagItemObject : ItemObject
         return bagSize;
     }
 
+    public List<ItemObject> GetInnerItems()
+    {
+        return innerItems;
+    }
+
     #endregion
 
     public int GetSlotCount()
     {
         return bagSize.x * bagSize.y;
     }
+
 }

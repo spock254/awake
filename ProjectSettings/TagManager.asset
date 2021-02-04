@@ -7,8 +7,9 @@ TagManager:
   - UI
   - CollisionCounter
   - EventSystem
-  - SlotContainer
-  - ItemContainer
+  - Inventory
+  - InventoryContainer
+  - ItemSprite
   layers:
   - Default
   - TransparentFX

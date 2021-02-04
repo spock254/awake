@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e897a88066e860d4481f126d47f322fc, type: 3}
   m_Name: BagItemObject
   m_EditorClassIdentifier: 
-  ID: a1a3a416-fa7e-46a0-98b7-6d811d350d77
+  ID: e52a9e64-de7b-4d54-8bfe-d7a491fe215b
   itemWeight: 0
   itemName: bag
   itemDescription: bag
@@ -25,5 +25,9 @@ MonoBehaviour:
     size: {x: 0, y: 0}
     inventorySprite: {fileID: 4615358558259721410, guid: 64782603a81d6b34aa6c9df0aa21b2a3,
       type: 3}
-  innerItems: []
-  bagSize: {x: 5, y: 5}
+    invPos: {x: 0, y: 0}
+  innerItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bagSize: {x: 4, y: 3}

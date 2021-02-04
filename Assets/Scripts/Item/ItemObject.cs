@@ -7,7 +7,6 @@ public enum ItemType { OnPlayerUse, Equipment, Common, Bag }
 public abstract class ItemObject : ScriptableObject 
 {
     [HideInInspector]   public string ID;
-                        public int itemWeight;
                         public string itemName;
                         public string itemDescription;
                         public Sprite itemSprite;
@@ -21,7 +20,7 @@ public abstract class ItemObject : ScriptableObject
         this.itemType = itemType;
         this.ID = System.Guid.NewGuid().ToString();
 
-        inventoryData.Init();
+        //inventoryData.Init();
     }
 
     bool IsSameItem(ItemObject otherItem)
@@ -38,25 +37,25 @@ public abstract class ItemObject : ScriptableObject
         _itemPref.GetComponent<ItemCell>().item = _item;
     }
 
-    #region operator == !=
-    public static bool operator ==(ItemObject item1, ItemObject item2)
-    {
-        return item1.ID == item2.ID;
-    }
+    // #region operator == !=
+    // public static bool operator ==(ItemObject item1, ItemObject item2)
+    // {
+    //     return item1.ID == item2.ID;
+    // }
 
-    public static bool operator !=(ItemObject item1, ItemObject item2)
-    {
-        return item1.ID != item2.ID;
-    }
+    // public static bool operator !=(ItemObject item1, ItemObject item2)
+    // {
+    //     return item1.ID != item2.ID;
+    // }
 
-    public override bool Equals(object other)
-    {
-        return base.Equals(other);
-    }
+    // public override bool Equals(object other)
+    // {
+    //     return base.Equals(other);
+    // }
 
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
-    }
-    #endregion
+    // public override int GetHashCode()
+    // {
+    //     return base.GetHashCode();
+    // }
+    // #endregion
 }

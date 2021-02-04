@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class TestItemDrop : MonoBehaviour
 {
     public ItemObject item;
-    public BagItemObject bag;
     EventDataBase eventDataBase;
+    
+
 
     void Start() 
     {
@@ -21,10 +22,17 @@ public class TestItemDrop : MonoBehaviour
             item.InstantiatePref(transform.position);
         }    
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            eventDataBase.OnBagOpen.Invoke(bag);
-        }
+        // if (Input.GetKeyDown(KeyCode.Tab))
+        // {
+        //     ItemObject bag = Global.Obj.GetBagSlot().GetComponent<Slot>().GetItem();
+
+        //     if (bag == null)
+        //     {
+        //         Debug.Log("BAG NOT FOUND");
+        //         return;
+        //     }
+        //     eventDataBase.OnBagOpen.Invoke((BagItemObject)bag);
+        // }
 
         Vector3 mousePosRight = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePosRight.x, mousePosRight.y);
@@ -37,10 +45,11 @@ public class TestItemDrop : MonoBehaviour
                 //Debug.Log(hit.collider.name);
                 if (hit.collider.name.Contains(Global.DROPED_ITEM_NAME)) 
                 {
-                    CommonItemObject common = (CommonItemObject)hit.collider.gameObject.GetComponent<ItemCell>().item;
+                    ItemObject common = hit.collider.gameObject.GetComponent<ItemCell>().item;
                     //bag.TryAddItem(common);
-
-                    eventDataBase.OnItemAdd.Invoke(common);
+                    //InventoryController inventory = Global.Component.GetInventoryController();
+                    //inventory.AddItem(common);
+                    eventDataBase.OnItemAdd.Invoke(Instantiate(common));
                 }
             }
         }
