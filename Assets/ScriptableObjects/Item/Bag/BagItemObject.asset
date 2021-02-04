@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e897a88066e860d4481f126d47f322fc, type: 3}
   m_Name: BagItemObject
   m_EditorClassIdentifier: 
-  ID: e52a9e64-de7b-4d54-8bfe-d7a491fe215b
-  itemWeight: 0
+  ID: 0d3b13fe-e46d-412f-b281-f87e116891b9
   itemName: bag
   itemDescription: bag
   itemSprite: {fileID: -7037212863549488232, guid: c6f72cf4797f6b343975bcff4b2eb1f3,
@@ -22,11 +21,10 @@ MonoBehaviour:
   itemPrefab: {fileID: 184138234984646550, guid: 31ca993e305bc1049b95d38af56021ba,
     type: 3}
   inventoryData:
-    size: {x: 0, y: 0}
-    inventorySprite: {fileID: 4615358558259721410, guid: 64782603a81d6b34aa6c9df0aa21b2a3,
-      type: 3}
-    invPos: {x: 0, y: 0}
+    itemWeight: 0
+    slotID: 0
   innerItems:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

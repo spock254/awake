@@ -19,14 +19,58 @@ public static class Global
             return foundObj;
         }
 
+        public static GameObject GetBagSlot()
+        {
+            const string TAG = "BagSlot";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
+
+        public static GameObject GetInventoryContainer()
+        {
+            const string TAG = "InventoryContainer";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
     }
     
     public static class Component
     {
+        public static BagItemObject GetPlayerBag()
+        {
+            return (BagItemObject)Obj.GetBagSlot().GetComponent<ItemCell>().item;
+        }
+
         public static EventDataBase GetEventDataBase()
         {
             const string TAG = "EventSystem";
             EventDataBase foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<EventDataBase>();
+            
+            INFORM_NOT_FOUND(foundCmp, TAG);
+
+            return foundCmp;
+        }
+
+        public static InventoryController GetInventoryController()
+        {
+            const string TAG = "Inventory";
+            InventoryController foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<InventoryController>();
+            
+            INFORM_NOT_FOUND(foundCmp, TAG);
+
+            return foundCmp;
+        }
+
+        public static InventoryRender GetInventoryRender()
+        {
+            const string TAG = "Inventory";
+            InventoryRender foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<InventoryRender>();
             
             INFORM_NOT_FOUND(foundCmp, TAG);
 

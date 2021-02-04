@@ -10,6 +10,7 @@ TagManager:
   - Inventory
   - InventoryContainer
   - ItemSprite
+  - BagSlot
   layers:
   - Default
   - TransparentFX

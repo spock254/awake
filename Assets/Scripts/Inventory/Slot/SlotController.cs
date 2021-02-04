@@ -7,10 +7,11 @@ using UnityEngine.EventSystems;
 
 public class SlotController : MonoBehaviour, IDropHandler
 {
-    public int slotID = 0;
-    Image itemSprite = null;
-    ItemCell cell = null;
-    // Start is called before the first frame update
+    [SerializeField]    int slotID = 0;
+                        
+                        Image itemSprite = null;
+                        ItemCell cell = null;
+    
     void Awake()
     {
         itemSprite = Find.FindChildByTag<Image>(this.gameObject, Global.Inventory.SLOT_ITEM_SPRITE);
@@ -19,11 +20,12 @@ public class SlotController : MonoBehaviour, IDropHandler
         TryActivateItemSprite();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
     }
+
     // @IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
@@ -36,12 +38,19 @@ public class SlotController : MonoBehaviour, IDropHandler
                 ItemObject item = _otherSlotGo.GetComponent<ItemCell>().item;
 
                 cell.item = item;
-
+                cell.item.inventoryData.SetSlotID(slotID);
                 TryActivateItemSprite();
 
                 _otherSlotController.RemoveItem();
             }
         }
+    }
+
+    public void SetItem(ItemObject item)
+    {
+        cell.item = item;
+        itemSprite.enabled = true;
+        itemSprite.sprite = item.itemSprite;
     }
 
     void TryActivateItemSprite()
@@ -64,4 +73,18 @@ public class SlotController : MonoBehaviour, IDropHandler
         itemSprite.sprite = null;
         itemSprite.enabled = false;
     }
+
+    #region get set
+
+    public void SetSlotID(int id)
+    {
+        this.slotID = id;
+    }
+
+    public int GetSlotID()
+    {
+        return this.slotID;
+    }
+
+    #endregion
 }

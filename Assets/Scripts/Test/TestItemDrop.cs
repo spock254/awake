@@ -7,12 +7,13 @@ public class TestItemDrop : MonoBehaviour
 {
     public ItemObject item;
     EventDataBase eventDataBase;
-    
+    InventoryController inventory;
 
 
     void Start() 
     {
         eventDataBase = Global.Component.GetEventDataBase();
+        inventory = Global.Component.GetInventoryController();
     }
 
     void Update()
@@ -22,17 +23,26 @@ public class TestItemDrop : MonoBehaviour
             item.InstantiatePref(transform.position);
         }    
 
-        // if (Input.GetKeyDown(KeyCode.Tab))
-        // {
-        //     ItemObject bag = Global.Obj.GetBagSlot().GetComponent<Slot>().GetItem();
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ItemObject bag = Global.Component.GetPlayerBag();
 
-        //     if (bag == null)
-        //     {
-        //         Debug.Log("BAG NOT FOUND");
-        //         return;
-        //     }
-        //     eventDataBase.OnBagOpen.Invoke((BagItemObject)bag);
-        // }
+            if (bag == null)
+            {
+                Debug.Log("BAG NOT FOUND");
+                return;
+            }
+            
+            if (inventory.IsOpen() == false)
+            {
+                eventDataBase.OnOpenBag.Invoke((BagItemObject)bag);
+            }
+            else
+            {
+                eventDataBase.OnCloseBag.Invoke();
+            }
+
+        }
 
         Vector3 mousePosRight = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePosRight.x, mousePosRight.y);
@@ -49,7 +59,7 @@ public class TestItemDrop : MonoBehaviour
                     //bag.TryAddItem(common);
                     //InventoryController inventory = Global.Component.GetInventoryController();
                     //inventory.AddItem(common);
-                    eventDataBase.OnItemAdd.Invoke(Instantiate(common));
+                    eventDataBase.OnAddItem.Invoke(Instantiate(common));
                 }
             }
         }

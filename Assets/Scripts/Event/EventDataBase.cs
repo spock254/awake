@@ -6,14 +6,16 @@ using UnityEngine.Events;
 public class EventDataBase : MonoBehaviour
 {
     /* inventory events */
-    [HideInInspector]   public UnityEvent<ItemObject> OnItemAdd;
+    [HideInInspector]   public UnityEvent<ItemObject> OnAddItem;
 
     /* interaction events */
-    [HideInInspector]   public UnityEvent<BagItemObject> OnBagOpen;
+    [HideInInspector]   public UnityEvent<BagItemObject> OnOpenBag;
+    [HideInInspector]   public UnityEvent OnCloseBag;
 
     void Awake() 
     {
-        OnItemAdd = new UnityEvent<ItemObject>();    
-        OnBagOpen = new UnityEvent<BagItemObject>();
+        OnAddItem = new UnityEvent<ItemObject>();    
+        OnOpenBag = new UnityEvent<BagItemObject>();
+        OnCloseBag = new UnityEvent();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ItemType { OnPlayerUse, Equipment, Common, Bag }
 
-public abstract class ItemObject : ScriptableObject 
+public class ItemObject : ScriptableObject 
 {
     [HideInInspector]   public string ID;
                         public string itemName;

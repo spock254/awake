@@ -20,6 +20,21 @@ public class BagItemObject : ItemObject
         return true;
     }
 
+    public int GetSlotCount()
+    {
+        return bagSize.x * bagSize.y;
+    }
+
+    public bool IsFuLL()
+    {
+        return innerItems.Count == GetSlotCount();
+    }
+
+    public bool IsEmpty()
+    {
+        return innerItems.Count == 0;
+    }
+
     #region get set
 
     public Vector2Int GetBagSize()
@@ -34,9 +49,5 @@ public class BagItemObject : ItemObject
 
     #endregion
 
-    public int GetSlotCount()
-    {
-        return bagSize.x * bagSize.y;
-    }
 
 }
