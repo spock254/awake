@@ -49,6 +49,13 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public void DropItem(ItemObject item)
+    {
+        BagItemObject _container = (isPlayerInventory == true) ? Global.Component.GetPlayerBag() : bag;
+        _container.GetInnerItems().Remove(item);
+        item.InstantiatePref(Global.Obj.GetPlayer().transform.position);
+    }
+
     public bool IsOpen()
     {
         return container.activeInHierarchy == true;

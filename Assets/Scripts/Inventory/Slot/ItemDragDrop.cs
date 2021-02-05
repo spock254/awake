@@ -43,9 +43,30 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (IsPointerOverUIElement() == false)
+        {
+            GameObject _inventory = Global.Obj.GetInventory();
+            InventoryController _inventoryController = _inventory.GetComponent<InventoryController>();
+            GameObject _slot = eventData.pointerDrag.GetComponent<PerentReference>().perent;
+            ItemObject _item = _slot.GetComponent<ItemCell>().item;
+            SlotController _slotController = _slot.GetComponent<SlotController>();
+
+            _inventoryController.DropItem(_item);
+            _slotController.RemoveItem();
+
+        }
+        
         itemSpriteCanvasGroup.blocksRaycasts = true;
         rt.anchoredPosition = originPosition;
-        //Debug.Log("OnEndDrag");
+
     }
 
+    public static bool IsPointerOverUIElement()
+    {
+        var eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        return results.Count > 0;
+    }
 }

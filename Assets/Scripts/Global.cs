@@ -38,6 +38,26 @@ public static class Global
 
             return foundObj;
         }
+
+        public static GameObject GetPlayer()
+        {
+            const string TAG = "Player";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
+
+        public static GameObject GetInventory()
+        {
+            const string TAG = "Inventory";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
     }
     
     public static class Component
