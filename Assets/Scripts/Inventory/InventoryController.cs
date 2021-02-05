@@ -28,21 +28,22 @@ public class InventoryController : MonoBehaviour
 
     void OnAddItem_AddItem(ItemObject item)
     {
-        BagItemObject _playerBag = (isPlayerInventory == true) ? Global.Component.GetPlayerBag() : bag;
+        BagItemObject _container = (isPlayerInventory == true) ? Global.Component.GetPlayerBag() : bag;
 
-        if (_playerBag != null)
+        if (_container != null)
         {
-            if (_playerBag.IsFuLL() == false)
+            if (_container.IsFuLL() == false)
             {
-                _playerBag.AddItem(item);
 
                 if (IsOpen() == true)
                 {
+                    _container.AddItem(item);
                     inventoryRender.AddItem(item);
                 }
                 else
                 {
-
+                    item.inventoryData.SetSlotID(inventoryRender.GetFreeSlotID(_container));
+                    _container.AddItem(item);
                 }
             }
         }

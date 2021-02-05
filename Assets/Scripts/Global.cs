@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Global
 {
-    public const string DROPED_ITEM_NAME = "Item";
+    public const string DROPED_ITEM_NAME = "__Item__";
 
 
     public static class Obj

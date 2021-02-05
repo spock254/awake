@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,6 @@ public class TestItemDrop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            item.InstantiatePref(transform.position);
-        }    
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -53,15 +50,23 @@ public class TestItemDrop : MonoBehaviour
             foreach (var hit in hits)
             {
                 //Debug.Log(hit.collider.name);
-                if (hit.collider.name.Contains(Global.DROPED_ITEM_NAME)) 
+                if (hit.collider.name.StartsWith(Global.DROPED_ITEM_NAME)) 
                 {
-                    ItemObject common = hit.collider.gameObject.GetComponent<ItemCell>().item;
-                    //bag.TryAddItem(common);
-                    //InventoryController inventory = Global.Component.GetInventoryController();
-                    //inventory.AddItem(common);
-                    eventDataBase.OnAddItem.Invoke(Instantiate(common));
+                    ItemObject item = hit.collider.gameObject.GetComponent<ItemCell>().item;
+
+                    eventDataBase.OnAddItem.Invoke(Instantiate<ItemObject>(item));
+
+                    Destroy(hit.collider.gameObject);
+                    return;
                 }
             }
         }
+    }
+
+    private void OnApplicationQuit() 
+    {
+        List<ItemObject> inner = Global.Component.GetPlayerBag().GetInnerItems();
+        inner.Clear();
+            
     }
 }

@@ -159,7 +159,35 @@ public class InventoryRender : MonoBehaviour
         _freeSlot.SetItem(item);
     }
 
+    public int GetFreeSlotID(BagItemObject container)
+    {
+        List<ItemObject> _items = container.GetInnerItems();
+        List<int> IDs = new List<int>();
+        if (container.IsFuLL())
+        {
+            return -1;
+        }
 
+        if (container.IsEmpty())
+        {
+            return 0;
+        }
+
+        for (int i = 0; i < _items.Count; i++)
+        {
+            IDs.Add(_items[i].inventoryData.GetSlotID());
+        }
+
+        for (int i = 0; i < _items.Count; i++)
+        {
+            if (IDs.Contains(i) == false)
+            {
+                return i;
+            }
+        }
+
+        return _items.Count;
+    }
 
     List<GameObject> GetSlots()
     {

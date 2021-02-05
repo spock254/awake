@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public enum ItemType { OnPlayerUse, Equipment, Common, Bag }
-
-public class ItemObject : ScriptableObject 
+[System.Serializable]
+public abstract class ItemObject : ScriptableObject 
 {
     [HideInInspector]   public string ID;
                         public string itemName;
@@ -36,26 +36,4 @@ public class ItemObject : ScriptableObject
         _itemPref.GetComponent<SpriteRenderer>().sprite = _item.itemSprite;
         _itemPref.GetComponent<ItemCell>().item = _item;
     }
-
-    // #region operator == !=
-    // public static bool operator ==(ItemObject item1, ItemObject item2)
-    // {
-    //     return item1.ID == item2.ID;
-    // }
-
-    // public static bool operator !=(ItemObject item1, ItemObject item2)
-    // {
-    //     return item1.ID != item2.ID;
-    // }
-
-    // public override bool Equals(object other)
-    // {
-    //     return base.Equals(other);
-    // }
-
-    // public override int GetHashCode()
-    // {
-    //     return base.GetHashCode();
-    // }
-    // #endregion
 }

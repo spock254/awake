@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e897a88066e860d4481f126d47f322fc, type: 3}
-  m_Name: BagItemObject
+  m_Script: {fileID: 11500000, guid: 100709bbf7d6d084d87d5e3f6f997f28, type: 3}
+  m_Name: pc
   m_EditorClassIdentifier: 
-  ID: 030a9494-90db-4407-b751-29787d038645
-  itemName: bag
-  itemDescription: bag
-  itemSprite: {fileID: -7037212863549488232, guid: c6f72cf4797f6b343975bcff4b2eb1f3,
+  ID: f7282be7-b0e4-4faf-bbf6-efc1afd07083
+  itemName: q1
+  itemDescription: q1
+  itemSprite: {fileID: 1535146859601078692, guid: dfae1d1bc7762bf4f92d0a0640255a47,
     type: 3}
-  itemType: 3
+  itemType: 2
   itemPrefab: {fileID: 184138234984646550, guid: 31ca993e305bc1049b95d38af56021ba,
     type: 3}
   inventoryData:
     itemWeight: 0
     slotID: 0
-  innerItems: []
-  bagSize: {x: 4, y: 3}

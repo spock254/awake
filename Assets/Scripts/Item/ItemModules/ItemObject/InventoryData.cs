@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryData
 {
                         public int itemWeight;
-    [SerializeField]   int slotID;
+    [SerializeField]    int slotID;
 
 
 

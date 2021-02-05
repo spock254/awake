@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 100709bbf7d6d084d87d5e3f6f997f28, type: 3}
-  m_Name: "\u0421ommonItemObject"
+  m_Name: bucket
   m_EditorClassIdentifier: 
-  ID: 2ac17e9d-17a7-4823-82b7-9170c7794da7
+  ID: 1493e593-24b1-46d2-8aa5-65df62d2c1f9
   itemName: bucket
   itemDescription: 
   itemSprite: {fileID: 21300000, guid: f69fcaa21ab9be645a3becf47b9edcf0, type: 3}
@@ -21,4 +21,4 @@ MonoBehaviour:
     type: 3}
   inventoryData:
     itemWeight: 0
-    slotID: 5
+    slotID: 0

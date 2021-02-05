@@ -16,7 +16,6 @@ public class BagItemObject : ItemObject
     public bool AddItem(ItemObject item)
     {
         innerItems.Add(item);
-
         return true;
     }
 
@@ -49,5 +48,9 @@ public class BagItemObject : ItemObject
 
     #endregion
 
-
+    // void SaveInnerItem()
+    // {
+    //     string _innerItemsJson = JsonUtility.ToJson(innerItems);
+    //     System.IO.File.WriteAllText(Application.persistentDataPath + "/innerItems.json", _innerItemsJson);
+    // }
 }
