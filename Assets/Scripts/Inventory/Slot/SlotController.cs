@@ -31,17 +31,33 @@ public class SlotController : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag != null)
         {
+            GameObject _otherSlotGo = eventData.pointerDrag.gameObject.GetComponent<PerentReference>().perent;
+            SlotController _otherSlotController = _otherSlotGo.GetComponent<SlotController>();
+            ItemObject _otherItem = _otherSlotGo.GetComponent<ItemCell>().item;
+            
             if (cell.item == null)
             {
-                GameObject _otherSlotGo = eventData.pointerDrag.gameObject.GetComponent<PerentReference>().perent;
-                SlotController _otherSlotController = _otherSlotGo.GetComponent<SlotController>();
-                ItemObject item = _otherSlotGo.GetComponent<ItemCell>().item;
 
-                cell.item = item;
+                cell.item = _otherItem;
                 cell.item.inventoryData.SetSlotID(slotID);
                 TryActivateItemSprite();
 
                 _otherSlotController.RemoveItem();
+            }
+            else
+            {
+                /*  swap items  */
+                ItemObject _item = cell.item;
+                cell.item = _otherItem;
+                _otherSlotGo.GetComponent<ItemCell>().item = _item;
+
+                /*   set slot id   */
+                cell.item.inventoryData.SetSlotID(slotID);
+                _otherSlotGo.GetComponent<ItemCell>().item.inventoryData.SetSlotID(_otherSlotController.GetSlotID());
+
+                /*   refresh slot spries   */
+                TryActivateItemSprite();
+                _otherSlotController.TryActivateItemSprite();
             }
         }
     }

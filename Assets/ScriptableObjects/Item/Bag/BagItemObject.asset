@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e897a88066e860d4481f126d47f322fc, type: 3}
   m_Name: BagItemObject
   m_EditorClassIdentifier: 
-  ID: 030a9494-90db-4407-b751-29787d038645
+  ID: c75bb919-2e05-4e21-9f95-c9aa0c1271ca
   itemName: bag
   itemDescription: bag
   itemSprite: {fileID: -7037212863549488232, guid: c6f72cf4797f6b343975bcff4b2eb1f3,
