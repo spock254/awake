@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123ea6fcf30c0514ea065c8b1167c81a, type: 3}
+  m_Name: EquipmentItemObject
+  m_EditorClassIdentifier: 
+  ID: 74dfa688-1574-4479-a505-45814e3a7a67
+  itemName: eq
+  itemDescription: eq
+  itemSprite: {fileID: -1387720548613697953, guid: c6f72cf4797f6b343975bcff4b2eb1f3,
+    type: 3}
+  itemType: 1
+  itemPrefab: {fileID: 184138234984646550, guid: 31ca993e305bc1049b95d38af56021ba,
+    type: 3}
+  inventoryData:
+    itemWeight: 0
+    slotID: 0
+  slotData:
+    amountOfSlots: 3
+  innerItems: []

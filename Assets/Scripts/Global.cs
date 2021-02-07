@@ -29,6 +29,16 @@ public static class Global
             return foundObj;
         }
 
+        public static GameObject GetEquipmentSlot()
+        {
+            const string TAG = "EquipmentSlot";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
+
         public static GameObject GetInventoryContainer()
         {
             const string TAG = "InventoryContainer";
@@ -58,6 +68,27 @@ public static class Global
 
             return foundObj;
         }
+
+        public static GameObject GetBar()
+        {
+            const string TAG = "Bar";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
+
+        public static GameObject GetBarContainer()
+        {
+            const string TAG = "BarContainer";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
+
     }
     
     public static class Component

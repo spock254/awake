@@ -78,7 +78,7 @@ public class InventoryRender : MonoBehaviour
     #endregion
     #region OnOpenBag wrapper
 
-    void LocateItems()
+    public void LocateItems()
     {
         int _slotCount = bag.GetSlotCount();
         int _bagSize = bag.GetInnerItems().Count;
@@ -107,7 +107,7 @@ public class InventoryRender : MonoBehaviour
         }
     }
 
-    void ResizeWindow()
+    public void ResizeWindow()
     {
         int _width = bag.GetBagSize().x * ((int)slotSize.x);
         int _height = bag.GetBagSize().y * ((int)slotSize.y);
@@ -117,7 +117,7 @@ public class InventoryRender : MonoBehaviour
         inventoryRt.sizeDelta = containerRt.sizeDelta = _adaptedSize;
     }
 
-    void CreateSlots()
+    public void CreateSlots()
     {
         for (int i = 0; i < bag.GetSlotCount(); i++)
         {
