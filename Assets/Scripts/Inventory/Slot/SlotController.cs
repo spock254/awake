@@ -11,6 +11,7 @@ public class SlotController : MonoBehaviour, IDropHandler
                         
                         Image itemSprite = null;
                         ItemCell cell = null;
+    [SerializeField]    ItemType itemType = ItemType.None;
     
     void Awake()
     {
@@ -18,12 +19,6 @@ public class SlotController : MonoBehaviour, IDropHandler
         cell = GetComponent<ItemCell>();
 
         TryActivateItemSprite();
-    }
-
-
-    void Update()
-    {
-        
     }
 
     // @IDropHandler
@@ -37,27 +32,33 @@ public class SlotController : MonoBehaviour, IDropHandler
             
             if (cell.item == null)
             {
+                if (IsSameTypeForSlots(_otherItem, this.itemType))
+                {
+                    cell.item = _otherItem;
+                    cell.item.inventoryData.SetSlotID(slotID);
+                    TryActivateItemSprite();
 
-                cell.item = _otherItem;
-                cell.item.inventoryData.SetSlotID(slotID);
-                TryActivateItemSprite();
-
-                _otherSlotController.RemoveItem();
+                    _otherSlotController.RemoveItem();
+                }
             }
             else
             {
-                /*  swap items  */
-                ItemObject _item = cell.item;
-                cell.item = _otherItem;
-                _otherSlotGo.GetComponent<ItemCell>().item = _item;
+                if (IsSameTypeForSlots(_otherItem, this.itemType) && IsSameTypeForSlots(cell.item, _otherSlotController.GetItemType()))
+                {
+                    /*  swap items  */
+                    ItemObject _item = cell.item;
+                    cell.item = _otherItem;
+                    _otherSlotGo.GetComponent<ItemCell>().item = _item;
 
-                /*   set slot id   */
-                cell.item.inventoryData.SetSlotID(slotID);
-                _otherSlotGo.GetComponent<ItemCell>().item.inventoryData.SetSlotID(_otherSlotController.GetSlotID());
+                    /*   set slot id   */
+                    cell.item.inventoryData.SetSlotID(slotID);
+                    _otherSlotGo.GetComponent<ItemCell>().item.inventoryData.SetSlotID(_otherSlotController.GetSlotID());
 
-                /*   refresh slot spries   */
-                TryActivateItemSprite();
-                _otherSlotController.TryActivateItemSprite();
+                    /*   refresh slot spries   */
+                    TryActivateItemSprite();
+                    _otherSlotController.TryActivateItemSprite();
+
+                }
             }
         }
     }
@@ -90,6 +91,11 @@ public class SlotController : MonoBehaviour, IDropHandler
         itemSprite.enabled = false;
     }
 
+    bool IsSameTypeForSlots(ItemObject item, ItemType itemType)
+    {
+        return itemType == ItemType.None || ((itemType != ItemType.None) && item.GetItemType() == itemType);
+    }
+
     #region get set
 
     public void SetSlotID(int id)
@@ -100,6 +106,16 @@ public class SlotController : MonoBehaviour, IDropHandler
     public int GetSlotID()
     {
         return this.slotID;
+    }
+
+    public ItemType GetItemType()
+    {
+        return this.itemType;
+    }
+
+    public void SetItemType(ItemType itemType)
+    {
+        this.itemType = itemType;
     }
 
     #endregion

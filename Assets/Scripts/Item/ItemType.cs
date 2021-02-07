@@ -7,5 +7,6 @@ public enum ItemType
     OnPlayerUse, 
     Equipment, 
     Common, 
-    Bag 
+    Bag,
+    None
 }

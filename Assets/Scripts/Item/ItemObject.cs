@@ -10,7 +10,7 @@ public abstract class ItemObject : ScriptableObject
                         public string itemName;
                         public string itemDescription;
                         public Sprite itemSprite;
-    [HideInInspector]   public ItemType itemType;
+                        ItemType itemType;
                         public GameObject itemPrefab;
 
                         public InventoryData inventoryData;
@@ -36,4 +36,13 @@ public abstract class ItemObject : ScriptableObject
         _itemPref.GetComponent<SpriteRenderer>().sprite = _item.itemSprite;
         _itemPref.GetComponent<ItemCell>().item = _item;
     }
+
+    #region get set
+
+    public ItemType GetItemType()
+    {
+        return this.itemType;
+    }
+
+    #endregion 
 }

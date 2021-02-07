@@ -54,7 +54,7 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
             _inventoryController.DropItem(_item);
             _slotController.RemoveItem();
         }
-        
+
         itemSpriteCanvasGroup.blocksRaycasts = true;
         rt.anchoredPosition = originPosition;
 
