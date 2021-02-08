@@ -27,11 +27,16 @@ public class BarRender : MonoBehaviour
 
     void Start() 
     {
+
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_InitEquipment);
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_EnableContainer);
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_ResizeWindow);
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_CreateSlots);
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_LocateItems);   
+    
+        eventDataBase.OnDressOffEquipment.AddListener(OnDressOffEquipment_DestroySlots);
+        eventDataBase.OnDressOffEquipment.AddListener(OnDressOffEquipment_DisableContainer);
+        eventDataBase.OnDressOffEquipment.AddListener(OnDressOffEquipment_DeinitEquipment);
     }
 
     #region OnDressOnEquipment wrapper
@@ -66,7 +71,6 @@ public class BarRender : MonoBehaviour
     }
 
     #endregion
-
     #region OnDressOnEquipment event
 
     void InitEquipment(EquipmentItemObject equipment)
@@ -103,6 +107,28 @@ public class BarRender : MonoBehaviour
         
     }
 
+
+    #endregion
+
+    #region OnDressOffEquipment
+
+    void OnDressOffEquipment_DestroySlots()
+    {
+        foreach (Transform slot in container.transform)
+        {
+            Destroy(slot.gameObject);
+        }
+    }
+
+    void OnDressOffEquipment_DisableContainer()
+    {
+        container.SetActive(false);
+    }
+
+    void OnDressOffEquipment_DeinitEquipment()
+    {
+         this.equipment = null;
+    }
 
     #endregion
 }

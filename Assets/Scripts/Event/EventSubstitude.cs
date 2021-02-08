@@ -11,7 +11,7 @@ public class EventSubstitude
         this.eventData = Global.Component.GetEventDataBase();
     }
 
-    public void InvokeDressEvent(ItemType itemType, bool isOn, ItemObject item)
+    public void InvokeDressEvent(ItemType itemType, bool isOn, ItemObject item = null)
     {
         if (itemType == ItemType.Equipment && isOn == true)
         {
@@ -19,7 +19,7 @@ public class EventSubstitude
         }
         else if (itemType == ItemType.Equipment && isOn == false)
         {
-            eventData.OnDressOffEquipment.Invoke((EquipmentItemObject)item);
+            eventData.OnDressOffEquipment.Invoke();
         }
     }
 }

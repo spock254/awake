@@ -62,11 +62,11 @@ public class TestItemDrop : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ItemObject equipment = Global.Obj.GetEquipmentSlot().GetComponent<ItemCell>().item;
-            eventDataBase.OnDressOnEquipment.Invoke((EquipmentItemObject)equipment);
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     ItemObject equipment = Global.Obj.GetEquipmentSlot().GetComponent<ItemCell>().item;
+        //     eventDataBase.OnDressOnEquipment.Invoke((EquipmentItemObject)equipment);
+        // }
     }
 
     private void OnApplicationQuit() 

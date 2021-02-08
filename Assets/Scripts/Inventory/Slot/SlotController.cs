@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class SlotController : MonoBehaviour, IDropHandler
 {
+                        EventDataBase eventDataBase;
+
     [SerializeField]    int slotID = 0;
                         
                         Image itemSprite = null;
@@ -15,6 +17,8 @@ public class SlotController : MonoBehaviour, IDropHandler
     
     void Awake()
     {
+        eventDataBase = Global.Component.GetEventDataBase();
+
         itemSprite = Find.FindChildByTag<Image>(this.gameObject, Global.Inventory.SLOT_ITEM_SPRITE);
         cell = GetComponent<ItemCell>();
 
@@ -60,6 +64,9 @@ public class SlotController : MonoBehaviour, IDropHandler
 
                 }
             }
+
+            EventSubstitude eventSubstitude = new EventSubstitude();
+            eventSubstitude.InvokeDressEvent(itemType, true, cell.item);
         }
     }
 

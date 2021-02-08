@@ -13,7 +13,10 @@ public class EventDataBase : MonoBehaviour
     [HideInInspector]   public UnityEvent OnCloseBag;
 
     [HideInInspector]   public UnityEvent<EquipmentItemObject> OnDressOnEquipment;
-    [HideInInspector]   public UnityEvent<EquipmentItemObject> OnDressOffEquipment;
+    [HideInInspector]   public UnityEvent OnDressOffEquipment;
+
+    [HideInInspector]   public UnityEvent<EquipmentItemObject> OnDressOnBag;
+    [HideInInspector]   public UnityEvent OnDressOffBag;
 
     void Awake() 
     {
@@ -22,6 +25,9 @@ public class EventDataBase : MonoBehaviour
         OnCloseBag = new UnityEvent();
 
         OnDressOnEquipment = new UnityEvent<EquipmentItemObject>();
-        OnDressOffEquipment = new UnityEvent<EquipmentItemObject>();
+        OnDressOffEquipment = new UnityEvent();
+
+        OnDressOnBag = new UnityEvent<EquipmentItemObject>();
+        OnDressOffBag = new UnityEvent();
     }
 }
