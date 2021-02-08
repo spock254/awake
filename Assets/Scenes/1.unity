@@ -1320,6 +1320,12 @@ MonoBehaviour:
   OnDressOffEquipment:
     m_PersistentCalls:
       m_Calls: []
+  OnDressOnBag:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDressOffBag:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &182063745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,12 +1557,12 @@ PrefabInstance:
     - target: {fileID: 2804124004392506950, guid: 31ca993e305bc1049b95d38af56021ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.501
+      value: 0.494
       objectReference: {fileID: 0}
     - target: {fileID: 2804124004392506950, guid: 31ca993e305bc1049b95d38af56021ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.115
       objectReference: {fileID: 0}
     - target: {fileID: 2804124004392506950, guid: 31ca993e305bc1049b95d38af56021ba,
         type: 3}
