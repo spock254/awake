@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarRender : MonoBehaviour
+public class BarEventHandler : MonoBehaviour, IRender
 {
                         EquipmentItemObject equipment;
     [SerializeField]    GameObject slotPref;
@@ -104,12 +104,35 @@ public class BarRender : MonoBehaviour
 
     void LocateItems()
     {
+        int _slotCount = equipment.GetSlotCount();
+        int _bagSize = equipment.GetInnerItems().Count;
         
+        List<ItemObject> items = equipment.GetInnerItems();
+        List<GameObject> _slots = GetSlots();
+
+        if (equipment.IsEmpty() == true)
+        {
+            return;   
+        }
+
+        for (int i = 0; i < _slotCount; i++)
+        {
+            for (int j = 0; j < _bagSize; j++)
+            {
+                int _itemSlotID = items[j].inventoryData.GetSlotID();
+                int _slotID = _slots[i].GetComponent<SlotController>().GetSlotID();
+                
+                if (_itemSlotID == _slotID)
+                {
+                    _slots[_slotID].GetComponent<SlotController>().SetItem(items[j]);
+                    continue;
+                }
+            }
+        }
     }
 
 
     #endregion
-
     #region OnDressOffEquipment
 
     void OnDressOffEquipment_DestroySlots()
@@ -131,4 +154,69 @@ public class BarRender : MonoBehaviour
     }
 
     #endregion
+
+    public void Add(ItemObject item)
+    {
+        SlotController _freeSlot = GetFreeSlot().GetComponent<SlotController>();
+        int _slotID = _freeSlot.GetSlotID();
+        
+        item.inventoryData.SetSlotID(_slotID);
+        _freeSlot.SetItem(item);
+    }
+
+    GameObject GetFreeSlot()
+    {
+        foreach (Transform slot in container.transform)
+        {
+            if (slot.GetComponent<ItemCell>().item == null)
+            {
+                return slot.gameObject;        
+            }
+        }
+
+        return null;
+    }
+
+    public int GetFreeSlotID(ItemObject container)
+    {
+        List<ItemObject> _items = container.GetInnerItems();
+        List<int> IDs = new List<int>();
+
+        if (container.IsFull())
+        {
+            return -1;
+        }
+
+        if (container.IsEmpty())
+        {
+            return 0;
+        }
+
+        for (int i = 0; i < _items.Count; i++)
+        {
+            IDs.Add(_items[i].inventoryData.GetSlotID());
+        }
+
+        for (int i = 0; i < _items.Count; i++)
+        {
+            if (IDs.Contains(i) == false)
+            {
+                return i;
+            }
+        }
+
+        return _items.Count;
+    }
+
+    List<GameObject> GetSlots()
+    {
+        List<GameObject> _slots = new List<GameObject>();
+
+        foreach (Transform slot in container.transform)
+        {
+            _slots.Add(slot.gameObject);
+        }
+
+        return _slots;
+    }
 }

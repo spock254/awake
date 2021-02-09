@@ -13,26 +13,17 @@ public class BagItemObject : ItemObject
         base.Init(ItemType.Bag);
     }
 
-    public bool AddItem(ItemObject item)
-    {
-        innerItems.Add(item);
-        return true;
-    }
+    // public bool AddItem(ItemObject item)
+    // {
+    //     innerItems.Add(item);
+    //     return true;
+    // }
 
     public int GetSlotCount()
     {
         return bagSize.x * bagSize.y;
     }
 
-    public bool IsFuLL()
-    {
-        return innerItems.Count == GetSlotCount();
-    }
-
-    public bool IsEmpty()
-    {
-        return innerItems.Count == 0;
-    }
 
     #region get set
 
@@ -41,16 +32,36 @@ public class BagItemObject : ItemObject
         return bagSize;
     }
 
-    public List<ItemObject> GetInnerItems()
-    {
-        return innerItems;
-    }
-
     #endregion
 
-    // void SaveInnerItem()
-    // {
-    //     string _innerItemsJson = JsonUtility.ToJson(innerItems);
-    //     System.IO.File.WriteAllText(Application.persistentDataPath + "/innerItems.json", _innerItemsJson);
-    // }
+    #region IItemList
+    
+    public override bool IsFull()
+    {
+        return innerItems.Count == GetSlotCount();
+    }
+
+    public override bool IsEmpty()
+    {
+        return innerItems.Count == 0;
+    }
+
+    public override List<ItemObject> GetInnerItems()
+    {
+        return this.innerItems;
+    }
+
+    public override void Add(ItemObject item)
+    {
+        innerItems.Add(item);
+    }
+
+    public override int Count => innerItems.Count;
+    
+    public override void Clear()
+    {
+        this.innerItems.Clear();
+    }
+    #endregion
+
 }

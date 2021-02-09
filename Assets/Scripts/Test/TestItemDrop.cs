@@ -30,7 +30,7 @@ public class TestItemDrop : MonoBehaviour
                 return;
             }
             
-            if (inventory.IsOpen() == false)
+            if (inventory.IsOpen(inventory.transform.GetChild(0).gameObject) == false)
             {
                 eventDataBase.OnOpenBag.Invoke((BagItemObject)bag);
             }
@@ -71,8 +71,16 @@ public class TestItemDrop : MonoBehaviour
 
     private void OnApplicationQuit() 
     {
-        List<ItemObject> inner = Global.Component.GetPlayerBag().GetInnerItems();
-        inner.Clear();
-            
+        BagItemObject bag = Global.Component.GetPlayerBag();
+        if (bag != null)
+        {
+            bag.Clear();
+        }
+        EquipmentItemObject equipment = (EquipmentItemObject)Global.Obj.GetEquipmentSlot().GetComponent<ItemCell>().item;
+
+        if (equipment != null)
+        {
+            equipment.Clear();
+        }
     }
 }

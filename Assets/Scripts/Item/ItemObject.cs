@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class ItemObject : ScriptableObject 
+public abstract class ItemObject : ScriptableObject, IItemList<ItemObject>
 {
     [HideInInspector]   public string ID;
                         public string itemName;
@@ -44,5 +45,82 @@ public abstract class ItemObject : ScriptableObject
         return this.itemType;
     }
 
-    #endregion 
+    
+
+    #endregion
+
+    #region IItemList
+
+    public virtual bool IsEmpty()
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual bool IsFull()
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual List<ItemObject> GetInnerItems()
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual int Count => throw new NotImplementedException();
+
+    public virtual bool IsReadOnly => throw new NotImplementedException();
+
+    public virtual ItemObject this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public virtual int IndexOf(ItemObject item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void Insert(int index, ItemObject item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void RemoveAt(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void Add(ItemObject item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void Clear()
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual bool Contains(ItemObject item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void CopyTo(ItemObject[] array, int arrayIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual bool Remove(ItemObject item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual IEnumerator<ItemObject> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
 }

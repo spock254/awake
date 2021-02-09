@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123ea6fcf30c0514ea065c8b1167c81a, type: 3}
   m_Name: EquipmentItemObject
   m_EditorClassIdentifier: 
-  ID: 74dfa688-1574-4479-a505-45814e3a7a67
+  ID: f5da4ef9-d1e8-444c-b647-9743ddd8d492
   itemName: eq
   itemDescription: eq
   itemSprite: {fileID: -1387720548613697953, guid: c6f72cf4797f6b343975bcff4b2eb1f3,
     type: 3}
-  itemType: 1
   itemPrefab: {fileID: 184138234984646550, guid: 31ca993e305bc1049b95d38af56021ba,
     type: 3}
   inventoryData:

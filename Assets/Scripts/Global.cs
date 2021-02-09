@@ -118,15 +118,6 @@ public static class Global
             return foundCmp;
         }
 
-        public static InventoryRender GetInventoryRender()
-        {
-            const string TAG = "Inventory";
-            InventoryRender foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<InventoryRender>();
-            
-            INFORM_NOT_FOUND(foundCmp, TAG);
-
-            return foundCmp;
-        }
 
         public static CollisionCounter GetCollisionCounter()
         {
@@ -148,6 +139,25 @@ public static class Global
             return foundCmp;
         }
 
+        public static BagEventHandler GetBagEventHandler()
+        {
+            const string TAG = "Inventory";
+            BagEventHandler foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<BagEventHandler>();
+            
+            INFORM_NOT_FOUND(foundCmp, TAG);
+
+            return foundCmp;
+        }
+
+        public static BarEventHandler GetBarEventHandler()
+        {
+            const string TAG = "Bar";
+            BarEventHandler foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<BarEventHandler>();
+            
+            INFORM_NOT_FOUND(foundCmp, TAG);
+
+            return foundCmp;
+        }
     }
 
     public static class Inventory

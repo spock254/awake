@@ -19,9 +19,40 @@ public class EquipmentItemObject : ItemObject
         base.Init(ItemType.Equipment);
     }
 
-    public void AddItem(ItemObject item)
+    public int GetSlotCount()
     {
-        if (slotData.GetAmountOfSlots() < innerItems.Count)
+        return slotData.GetAmountOfSlots();
+    }
+
+    #region get set
+
+    public SlotData GetSlotData()
+    {
+        return this.slotData;
+    }
+
+    #endregion
+
+    #region  IItemList
+
+    public override bool IsFull()
+    {
+        return innerItems.Count == GetSlotCount();
+    }
+
+    public override bool IsEmpty()
+    {
+        return innerItems.Count == 0;
+    }
+
+    public override List<ItemObject> GetInnerItems()
+    {
+        return this.innerItems;
+    }
+
+    public override void Add(ItemObject item)
+    {
+        if (IsFull() == false)
         {
             innerItems.Add(item);
         }
@@ -31,16 +62,11 @@ public class EquipmentItemObject : ItemObject
         }
     }
 
-    #region get set
+    public override int Count => innerItems.Count;
 
-    public List<ItemObject> GetInnerItems()
+    public override void Clear()
     {
-        return this.innerItems;
-    }
-
-    public SlotData GetSlotData()
-    {
-        return this.slotData;
+        this.innerItems.Clear();
     }
 
     #endregion

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryRender : MonoBehaviour
+public class BagEventHandler : MonoBehaviour, IRender
 {
                         BagItemObject bag;
                         EventDataBase eventDataBase;
@@ -150,7 +150,7 @@ public class InventoryRender : MonoBehaviour
 
     #endregion
 
-    public void AddItem(ItemObject item)
+    public void Add(ItemObject item)
     {
         SlotController _freeSlot = GetFreeSlot().GetComponent<SlotController>();
         int _slotID = _freeSlot.GetSlotID();
@@ -159,11 +159,11 @@ public class InventoryRender : MonoBehaviour
         _freeSlot.SetItem(item);
     }
 
-    public int GetFreeSlotID(BagItemObject container)
+    public int GetFreeSlotID(ItemObject container)
     {
         List<ItemObject> _items = container.GetInnerItems();
         List<int> IDs = new List<int>();
-        if (container.IsFuLL())
+        if (container.IsFull())
         {
             return -1;
         }
