@@ -23,10 +23,6 @@ public class BarEventHandler : MonoBehaviour, IRender
 
         barRt = this.GetComponent<RectTransform>();
         containerRt = container.GetComponent<RectTransform>();
-    }
-
-    void Start() 
-    {
 
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_InitEquipment);
         eventDataBase.OnDressOnEquipment.AddListener(OnDressOnEquipment_EnableContainer);
@@ -98,7 +94,9 @@ public class BarEventHandler : MonoBehaviour, IRender
         for (int i = 0; i < _amountOfSlots; i++)
         {
             GameObject _slotIns = Instantiate(slotPref, container.transform);
-            _slotIns.GetComponent<SlotController>().SetSlotID(i); 
+            SlotController _slotController = _slotIns.GetComponent<SlotController>();
+            _slotController.SetSlotID(i);
+            _slotController.SetContainerItemType(ItemType.Equipment); 
         }    
     }
 
@@ -154,7 +152,7 @@ public class BarEventHandler : MonoBehaviour, IRender
     }
 
     #endregion
-
+    #region IRender
     public void Add(ItemObject item)
     {
         SlotController _freeSlot = GetFreeSlot().GetComponent<SlotController>();
@@ -164,17 +162,16 @@ public class BarEventHandler : MonoBehaviour, IRender
         _freeSlot.SetItem(item);
     }
 
-    GameObject GetFreeSlot()
+    public void Remove(ItemObject item)
     {
-        foreach (Transform slot in container.transform)
+        if (equipment != null)
         {
-            if (slot.GetComponent<ItemCell>().item == null)
-            {
-                return slot.gameObject;        
-            }
+            equipment.Remove(item);
         }
-
-        return null;
+        else
+        {
+            Debug.LogWarning("EQUIPMENT IS NULL");
+        }
     }
 
     public int GetFreeSlotID(ItemObject container)
@@ -206,6 +203,21 @@ public class BarEventHandler : MonoBehaviour, IRender
         }
 
         return _items.Count;
+    }
+
+    #endregion
+
+    GameObject GetFreeSlot()
+    {
+        foreach (Transform slot in container.transform)
+        {
+            if (slot.GetComponent<ItemCell>().item == null)
+            {
+                return slot.gameObject;        
+            }
+        }
+
+        return null;
     }
 
     List<GameObject> GetSlots()

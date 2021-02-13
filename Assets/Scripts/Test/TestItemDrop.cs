@@ -9,12 +9,13 @@ public class TestItemDrop : MonoBehaviour
     public ItemObject item;
     EventDataBase eventDataBase;
     InventoryController inventory;
-
+    GameObject inv = null;
 
     void Start() 
     {
         eventDataBase = Global.Component.GetEventDataBase();
         inventory = Global.Component.GetInventoryController();
+        inv = Global.Obj.GetInventory();
     }
 
     void Update()
@@ -30,7 +31,7 @@ public class TestItemDrop : MonoBehaviour
                 return;
             }
             
-            if (inventory.IsOpen(inventory.transform.GetChild(0).gameObject) == false)
+            if (inventory.IsOpen(inv.transform.GetChild(0).gameObject) == false)
             {
                 eventDataBase.OnOpenBag.Invoke((BagItemObject)bag);
             }

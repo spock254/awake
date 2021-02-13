@@ -62,6 +62,11 @@ public class EquipmentItemObject : ItemObject
         }
     }
 
+    public override bool Remove(ItemObject item)
+    {
+        return innerItems.Remove(item);
+    }
+
     public override int Count => innerItems.Count;
 
     public override void Clear()

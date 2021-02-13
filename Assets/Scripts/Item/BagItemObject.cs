@@ -56,6 +56,11 @@ public class BagItemObject : ItemObject
         innerItems.Add(item);
     }
 
+    public override bool Remove(ItemObject item)
+    {
+        return innerItems.Remove(item);
+    }
+
     public override int Count => innerItems.Count;
     
     public override void Clear()

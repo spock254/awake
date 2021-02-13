@@ -23,10 +23,7 @@ public class BagEventHandler : MonoBehaviour, IRender
         container = this.transform.GetChild(0).gameObject;//Global.Obj.GetInventoryContainer(); 
         slotSize = container.GetComponent<GridLayoutGroup>().cellSize;
         eventDataBase = Global.Component.GetEventDataBase();
-    }
 
-    void Start() 
-    {
         //! инит сумки с самого начала
         eventDataBase.OnOpenBag.AddListener(OnOpenBag_InitBag);
         eventDataBase.OnOpenBag.AddListener(OnOpenBag_EnableContainer);
@@ -37,11 +34,8 @@ public class BagEventHandler : MonoBehaviour, IRender
         eventDataBase.OnCloseBag.AddListener(OnCloseBag_DestroySlots);
         eventDataBase.OnCloseBag.AddListener(OnCloseBag_DisableContainer);
         eventDataBase.OnCloseBag.AddListener(OnCloseBag_DeinitBag);
-    }
 
-    void Update()
-    {
-        
+        eventDataBase.OnDressOffBag.AddListener(OnDressOffBag_CloseBag);
     }
 
     #region OnOpenBag event
@@ -122,16 +116,22 @@ public class BagEventHandler : MonoBehaviour, IRender
         for (int i = 0; i < bag.GetSlotCount(); i++)
         {
             GameObject _slotIns = Instantiate(slotPref, container.transform);
-            _slotIns.GetComponent<SlotController>().SetSlotID(i);
+            SlotController _slotController = _slotIns.GetComponent<SlotController>();
+            _slotController.SetSlotID(i);
+            _slotController.SetContainerItemType(ItemType.Bag); 
         }
     }
 
     #endregion
-
     #region OnCloseBag event
 
     void OnCloseBag_DestroySlots()
     {
+        if (container == null)
+        {
+            return;
+        }
+
         foreach (Transform slot in container.transform)
         {
             Destroy(slot.gameObject);
@@ -140,6 +140,11 @@ public class BagEventHandler : MonoBehaviour, IRender
 
     void OnCloseBag_DisableContainer()
     {
+        if (container == null)
+        {
+            return;
+        }
+
         container.SetActive(false);
     }
 
@@ -149,7 +154,15 @@ public class BagEventHandler : MonoBehaviour, IRender
     }
 
     #endregion
-
+    #region OnDressOffBag event
+    
+    void OnDressOffBag_CloseBag()
+    {
+        eventDataBase.OnCloseBag.Invoke();
+    }
+    
+    #endregion
+    #region IRender
     public void Add(ItemObject item)
     {
         SlotController _freeSlot = GetFreeSlot().GetComponent<SlotController>();
@@ -157,6 +170,18 @@ public class BagEventHandler : MonoBehaviour, IRender
         
         item.inventoryData.SetSlotID(_slotID);
         _freeSlot.SetItem(item);
+    }
+
+    public void Remove(ItemObject item)
+    {
+        if (bag != null)
+        {
+            bag.Remove(item);
+        }
+        else
+        {
+            Debug.LogWarning("BAG IS");
+        }
     }
 
     public int GetFreeSlotID(ItemObject container)
@@ -188,6 +213,8 @@ public class BagEventHandler : MonoBehaviour, IRender
 
         return _items.Count;
     }
+    #endregion
+
 
     List<GameObject> GetSlots()
     {

@@ -14,7 +14,8 @@ public class SlotController : MonoBehaviour, IDropHandler
                         Image itemSprite = null;
                         ItemCell cell = null;
     [SerializeField]    ItemType itemType = ItemType.None;
-    
+    [SerializeField]    ItemType containerItemType = ItemType.None;
+
     void Awake()
     {
         eventDataBase = Global.Component.GetEventDataBase();
@@ -123,6 +124,16 @@ public class SlotController : MonoBehaviour, IDropHandler
     public void SetItemType(ItemType itemType)
     {
         this.itemType = itemType;
+    }
+
+    public void SetContainerItemType(ItemType itemType)
+    {
+        this.containerItemType = itemType;
+    }
+
+    public ItemType GetContainerItemType()
+    {
+        return this.containerItemType;
     }
 
     #endregion

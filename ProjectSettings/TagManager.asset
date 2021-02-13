@@ -14,6 +14,7 @@ TagManager:
   - EquipmentSlot
   - Bar
   - BarContainer
+  - InventoryManager
   layers:
   - Default
   - TransparentFX

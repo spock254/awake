@@ -14,7 +14,7 @@ public class InventoryController : MonoBehaviour
     {
         eventDataBase = Global.Component.GetEventDataBase();
         bagEvent = GetComponent<BagEventHandler>();
-        container = this.transform.GetChild(0).gameObject;//Global.Obj.GetInventoryContainer();
+        container = Global.Obj.GetInventory().transform.GetChild(0).gameObject;//Global.Obj.GetInventoryContainer();
     }
 
     void Start() 
@@ -56,10 +56,14 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void DropItem(ItemObject item)
+    public void DropItem(ItemObject item, ItemType containerType)
     {
-        BagItemObject _container = Global.Component.GetPlayerBag();
-        _container.GetInnerItems().Remove(item);
+        IRender _render = (containerType == ItemType.Bag) ? Global.Component.GetBagEventHandler().GetComponent<IRender>() 
+                                                          : Global.Component.GetBarEventHandler().GetComponent<IRender>();
+
+        _render.Remove(item);                                                          
+        //BagItemObject _container = Global.Component.GetPlayerBag();
+        //_container.GetInnerItems().Remove(item);
         item.InstantiatePref(Global.Obj.GetPlayer().transform.position);
     }
 

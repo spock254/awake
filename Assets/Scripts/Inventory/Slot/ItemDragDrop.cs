@@ -12,9 +12,11 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     RectTransform rt = null;
     Vector2 originPosition = Vector2.zero;
     CanvasGroup itemSpriteCanvasGroup = null;
+    EventDataBase eventDataBase;
 
     void Awake() 
     {
+        eventDataBase = Global.Component.GetEventDataBase();
         uiCanvas = Global.Obj.GetUI().GetComponent<Canvas>();
         rt = GetComponent<RectTransform>();
         itemSprite = GetComponent<Image>();  
@@ -31,7 +33,20 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        GameObject _slot = eventData.pointerDrag.GetComponent<PerentReference>().perent;
+        ItemObject _item = _slot.GetComponent<ItemCell>().item;
+
+        if (_item.GetItemType() == ItemType.Bag)
+        {
+            eventDataBase.OnDressOffBag.Invoke();
+        }
+        else if (_item.GetItemType() == ItemType.Equipment)
+        {
+            eventDataBase.OnDressOffEquipment.Invoke();
+        }
+        
         itemSpriteCanvasGroup.blocksRaycasts = false;
+
         //Debug.Log("OnBeginDrag");
     }
 
@@ -52,7 +67,7 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         if (IsPointerOverUIElement() == false)
         {
 
-            _inventoryController.DropItem(_item);
+            _inventoryController.DropItem(_item, _slotController.GetContainerItemType());
             _slotController.RemoveItem();
         }
 

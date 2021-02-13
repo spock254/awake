@@ -89,6 +89,15 @@ public static class Global
             return foundObj;
         }
 
+        public static GameObject GetInventoryManager()
+        {
+            const string TAG = "InventoryManager";
+            GameObject foundObj = GameObject.FindGameObjectWithTag(TAG);
+
+            INFORM_NOT_FOUND(foundObj, TAG);
+
+            return foundObj;
+        }
     }
     
     public static class Component
@@ -110,14 +119,13 @@ public static class Global
 
         public static InventoryController GetInventoryController()
         {
-            const string TAG = "Inventory";
+            const string TAG = "InventoryManager";
             InventoryController foundCmp = GameObject.FindGameObjectWithTag(TAG).GetComponent<InventoryController>();
             
             INFORM_NOT_FOUND(foundCmp, TAG);
 
             return foundCmp;
         }
-
 
         public static CollisionCounter GetCollisionCounter()
         {
@@ -158,6 +166,7 @@ public static class Global
 
             return foundCmp;
         }
+    
     }
 
     public static class Inventory
